@@ -1,80 +1,54 @@
 .skills {
-  padding: 5rem 2rem;
-  background: var(--dark-bg);
+  padding: 6rem 2rem;
+  background: var(--dark-secondary);
   position: relative;
-}
-
-.skills::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent,
-    var(--neon-pink),
-    var(--neon-cyan),
-    transparent);
 }
 
 .section-subtitle {
   text-align: center;
-  color: var(--text-light);
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
-  text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
   margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .skill-category {
-  background: var(--dark-secondary);
-  padding: 2rem;
-  border: 2px solid var(--neon-purple);
-  box-shadow:
-    0 0 20px rgba(179, 0, 255, 0.3),
-    inset 0 0 20px rgba(179, 0, 255, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.skill-category::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 2px solid var(--neon-cyan);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.skill-category:hover::after {
-  opacity: 1;
+  background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-tertiary) 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
 }
 
 .skill-category:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 0 30px var(--neon-cyan),
-    inset 0 0 30px rgba(0, 255, 255, 0.2);
+  transform: translateY(-15px) rotateX(2deg);
+  box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+  border-color: rgba(102, 126, 234, 0.2);
 }
 
 .category-title {
   font-size: 1.5rem;
-  color: var(--neon-purple);
-  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
   text-align: center;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow:
-    0 0 10px var(--neon-purple),
-    0 0 20px var(--neon-purple);
+  font-weight: 700;
 }
 
 .skills-list {
@@ -86,7 +60,7 @@
 .skill-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .skill-header {
@@ -97,54 +71,32 @@
 
 .skill-name {
   font-weight: 600;
-  color: var(--neon-cyan);
+  color: var(--text-primary);
   font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .skill-percentage {
   font-size: 0.9rem;
-  color: var(--neon-green);
-  font-weight: 600;
-  text-shadow: 0 0 5px var(--neon-green);
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .skill-bar {
-  height: 10px;
-  background: var(--dark-bg);
-  border: 1px solid var(--neon-cyan);
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
-  transition: width 1s ease-out;
-  animation: fillBar 1.5s ease-out;
-  box-shadow:
-    0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-pink);
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 10px;
+  transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: fillBar 2s ease-out;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
   position: relative;
-  overflow: hidden;
-}
-
-.skill-progress::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
 }
 
 @keyframes fillBar {
@@ -155,26 +107,23 @@
 
 .tech-stack {
   text-align: center;
-  padding: 3rem;
-  background:
-    linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%),
-    var(--dark-secondary);
-  border: 2px solid var(--neon-cyan);
-  color: var(--neon-cyan);
-  box-shadow:
-    0 0 30px rgba(0, 255, 255, 0.3),
-    inset 0 0 30px rgba(0, 255, 255, 0.1);
+  padding: 4rem 3rem;
+  background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-tertiary) 100%);
+  border-radius: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .tech-title {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--neon-pink);
-  text-shadow:
-    0 0 10px var(--neon-pink),
-    0 0 20px var(--neon-pink);
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
 }
 
 .tech-badges {
@@ -185,23 +134,20 @@
 }
 
 .tech-badge {
-  background: var(--dark-bg);
+  background: rgba(102, 126, 234, 0.1);
   padding: 0.75rem 1.5rem;
-  border: 2px solid var(--neon-green);
+  border-radius: 20px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: default;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--neon-green);
-  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+  color: var(--primary-light);
+  border: 1px solid rgba(102, 126, 234, 0.2);
 }
 
 .tech-badge:hover {
-  background: var(--neon-green);
-  color: var(--dark-bg);
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px var(--neon-green);
+  background: rgba(102, 126, 234, 0.2);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -210,7 +156,7 @@
   }
 
   .tech-badges {
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .tech-badge {
