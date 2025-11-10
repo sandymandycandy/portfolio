@@ -8,9 +8,9 @@ const Hero = () => {
         <h1 className="hero-title">
           Hi, I'm <span className="highlight">Your Name</span>
         </h1>
-        <h2 className="hero-subtitle">Full Stack Developer</h2>
+        <h2 className="hero-subtitle">Professional Full Stack Developer</h2>
         <p className="hero-description">
-          Passionate about creating powerful web applications using MERN Stack & XAMPP
+          Crafting exceptional web experiences with modern technologies. Specialized in MERN Stack development and enterprise-level solutions using XAMPP.
         </p>
         <div className="hero-buttons">
           <a href="#projects" className="btn btn-primary">View My Work</a>

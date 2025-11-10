@@ -2,6 +2,7 @@
   padding: 6rem 2rem;
   background: var(--dark-secondary);
   position: relative;
+  overflow: hidden;
 }
 
 .section-subtitle {
@@ -14,153 +15,271 @@
   margin-right: auto;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 4rem;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+/* Billboard Styles */
+.skills-billboard {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 3rem 0;
+  margin-bottom: 5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.03) 0%,
+    rgba(118, 75, 162, 0.03) 100%
+  );
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.skill-category {
-  background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-tertiary) 100%);
-  padding: 2.5rem;
+.skills-billboard::before,
+.skills-billboard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.skills-billboard::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--dark-secondary) 0%,
+    transparent 100%
+  );
+}
+
+.skills-billboard::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--dark-secondary) 0%,
+    transparent 100%
+  );
+}
+
+.billboard-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll 40s linear infinite;
+  width: max-content;
+}
+
+.billboard-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.tech-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-width: 180px;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--dark-card) 0%,
+    var(--dark-tertiary) 100%
+  );
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    var(--tech-color, var(--primary)) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.tech-card:hover::before {
+  opacity: 0.1;
+}
+
+.tech-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.tech-icon {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.tech-card:hover .tech-icon {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--tech-color, var(--primary));
+  box-shadow: 0 0 30px var(--tech-color, var(--primary));
+  transform: rotateY(360deg);
+}
+
+.tech-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.tech-card:hover .tech-name {
+  color: var(--primary-light);
+}
+
+/* Expertise Grid */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.expertise-card {
+  background: linear-gradient(
+    135deg,
+    var(--dark-card) 0%,
+    var(--dark-tertiary) 100%
+  );
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
   transform-style: preserve-3d;
 }
 
-.skill-category:hover {
-  transform: translateY(-15px) rotateX(2deg);
+.expertise-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--accent),
+    var(--accent-secondary)
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.expertise-card:hover::before {
+  opacity: 1;
+}
+
+.expertise-card:hover {
+  transform: translateY(-10px) rotateX(2deg);
   box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
   border-color: rgba(102, 126, 234, 0.2);
 }
 
-.category-title {
+.expertise-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  filter: grayscale(0.3);
+  transition: all 0.4s ease;
+}
+
+.expertise-card:hover .expertise-icon {
+  filter: grayscale(0);
+  transform: scale(1.2) rotateZ(5deg);
+}
+
+.expertise-card h3 {
   font-size: 1.5rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 2rem;
-  text-align: center;
+  margin-bottom: 1rem;
   font-weight: 700;
 }
 
-.skills-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.expertise-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.skill-name {
-  font-weight: 600;
-  color: var(--text-primary);
-  font-size: 1rem;
-}
-
-.skill-percentage {
-  font-size: 0.9rem;
-  color: var(--accent);
-  font-weight: 700;
-}
-
-.skill-bar {
-  height: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--primary-light));
-  border-radius: 10px;
-  transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
-  animation: fillBar 2s ease-out;
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-  position: relative;
-}
-
-@keyframes fillBar {
-  from {
-    width: 0;
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 
-.tech-stack {
-  text-align: center;
-  padding: 4rem 3rem;
-  background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-tertiary) 100%);
-  border-radius: 25px;
-  max-width: 1000px;
-  margin: 0 auto;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-.tech-title {
-  font-size: 2rem;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 800;
-}
-
-.tech-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.tech-badge {
-  background: rgba(102, 126, 234, 0.1);
-  padding: 0.75rem 1.5rem;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  cursor: default;
-  color: var(--primary-light);
-  border: 1px solid rgba(102, 126, 234, 0.2);
-}
-
-.tech-badge:hover {
-  background: rgba(102, 126, 234, 0.2);
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
-  .skills-grid {
+  .tech-card {
+    min-width: 150px;
+    padding: 1.5rem 1rem;
+  }
+
+  .tech-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .tech-name {
+    font-size: 0.9rem;
+  }
+
+  .expertise-grid {
     grid-template-columns: 1fr;
   }
 
-  .tech-badges {
-    gap: 0.75rem;
-  }
-
-  .tech-badge {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+  .billboard-track {
+    animation: scroll 30s linear infinite;
   }
 }

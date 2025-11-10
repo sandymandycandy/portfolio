@@ -56,9 +56,9 @@ const Projects = () => {
   return (
     <section className="projects" id="projects">
       <div className="container">
-        <h2 className="section-title">My Projects</h2>
+        <h2 className="section-title">Featured Projects</h2>
         <p className="section-subtitle">
-          Here are some of my recent projects that showcase my skills
+          A showcase of my latest work demonstrating expertise across the full technology stack
         </p>
         <div className="projects-grid">
           {projects.map((project) => (

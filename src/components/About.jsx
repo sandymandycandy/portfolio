@@ -9,17 +9,19 @@ const About = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              I'm a passionate Full Stack Developer with expertise in building modern web applications.
-              I love turning complex problems into simple, beautiful, and intuitive solutions.
+              I'm a dedicated Full Stack Developer specializing in building scalable, high-performance web applications.
+              With expertise in MERN Stack and XAMPP environments, I transform complex business requirements into
+              elegant, user-centric digital solutions.
             </p>
             <p>
-              My journey in software development has equipped me with a strong foundation in both
-              frontend and backend technologies. I'm always eager to learn new technologies and
-              stay up-to-date with industry trends.
+              My professional journey has equipped me with comprehensive knowledge in both client-side and server-side
+              technologies. I excel at architecting robust applications, optimizing performance, and delivering
+              exceptional user experiences across all platforms.
             </p>
             <p>
-              When I'm not coding, you'll find me exploring new technologies, contributing to
-              open-source projects, or sharing knowledge with the developer community.
+              Committed to continuous improvement, I stay current with emerging technologies and best practices.
+              I thrive in collaborative environments and take pride in writing clean, maintainable code that
+              drives business value.
             </p>
             <div className="about-stats">
               <div className="stat">
