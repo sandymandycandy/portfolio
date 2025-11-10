@@ -4,6 +4,46 @@
   position: relative;
 }
 
+/* Scroll Animations */
+.contact .section-title,
+.contact .section-subtitle {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.contact .section-title.animate-in,
+.contact .section-subtitle.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact .section-subtitle.animate-in {
+  transition-delay: 0.2s;
+}
+
+.contact-info {
+  opacity: 0;
+  transform: perspective(1000px) translateX(-100px) rotateY(15deg);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
+}
+
+.contact-info.slide-in-left {
+  opacity: 1;
+  transform: perspective(1000px) translateX(0) rotateY(0deg);
+}
+
+.contact-form {
+  opacity: 0;
+  transform: perspective(1000px) translateX(100px) rotateY(-15deg);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
+}
+
+.contact-form.slide-in-right {
+  opacity: 1;
+  transform: perspective(1000px) translateX(0) rotateY(0deg);
+}
+
 .contact-content {
   display: grid;
   grid-template-columns: 1fr 1fr;

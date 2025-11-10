@@ -4,6 +4,24 @@
   position: relative;
 }
 
+/* Scroll Animations */
+.projects .section-title,
+.projects .section-subtitle {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.projects .section-title.animate-in,
+.projects .section-subtitle.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects .section-subtitle.animate-in {
+  transition-delay: 0.2s;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -23,6 +41,19 @@
   position: relative;
   transform-style: preserve-3d;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: perspective(1000px) translateY(100px) rotateX(25deg);
+}
+
+.project-card.animate-project {
+  animation: projectSlideIn 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes projectSlideIn {
+  to {
+    opacity: 1;
+    transform: perspective(1000px) translateY(0) rotateX(0deg);
+  }
 }
 
 .project-card::before {

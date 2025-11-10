@@ -1,0 +1,22 @@
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent) 50%,
+    var(--accent-secondary) 100%
+  );
+  transform-origin: left;
+  transition: transform 0.1s ease-out;
+  box-shadow: 0 0 20px var(--primary);
+}

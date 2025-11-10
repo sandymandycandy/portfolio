@@ -1,7 +1,9 @@
 import React from 'react';
 import './Projects.css';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Projects = () => {
+  const [projectsRef, projectsVisible] = useScrollAnimation({ threshold: 0.1, once: true });
   const projects = [
     {
       id: 1,
@@ -54,15 +56,19 @@ const Projects = () => {
   ];
 
   return (
-    <section className="projects" id="projects">
+    <section className="projects" id="projects" ref={projectsRef}>
       <div className="container">
-        <h2 className="section-title">Featured Projects</h2>
-        <p className="section-subtitle">
+        <h2 className={`section-title ${projectsVisible ? 'animate-in' : ''}`}>Featured Projects</h2>
+        <p className={`section-subtitle ${projectsVisible ? 'animate-in' : ''}`}>
           A showcase of my latest work demonstrating expertise across the full technology stack
         </p>
         <div className="projects-grid">
-          {projects.map((project) => (
-            <div key={project.id} className="project-card">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={`project-card ${projectsVisible ? 'animate-project' : ''}`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>

@@ -1,12 +1,15 @@
 import React from 'react';
 import './About.css';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const About = () => {
+  const [aboutRef, aboutVisible] = useScrollAnimation({ threshold: 0.2, once: true });
+
   return (
-    <section className="about" id="about">
+    <section className="about" id="about" ref={aboutRef}>
       <div className="container">
-        <h2 className="section-title">About Me</h2>
-        <div className="about-content">
+        <h2 className={`section-title ${aboutVisible ? 'animate-in' : ''}`}>About Me</h2>
+        <div className={`about-content ${aboutVisible ? 'animate-in' : ''}`}>
           <div className="about-text">
             <p>
               I'm a dedicated Full Stack Developer specializing in building scalable, high-performance web applications.

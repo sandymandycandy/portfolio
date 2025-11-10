@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './Contact.css';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Contact = () => {
+  const [contactRef, contactVisible] = useScrollAnimation({ threshold: 0.2, once: true });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,15 +29,15 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact" id="contact">
+    <section className="contact" id="contact" ref={contactRef}>
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
-        <p className="section-subtitle">
+        <h2 className={`section-title ${contactVisible ? 'animate-in' : ''}`}>Get In Touch</h2>
+        <p className={`section-subtitle ${contactVisible ? 'animate-in' : ''}`}>
           Have a project in mind? Let's work together!
         </p>
 
-        <div className="contact-content">
-          <div className="contact-info">
+        <div className={`contact-content ${contactVisible ? 'animate-in' : ''}`}>
+          <div className={`contact-info ${contactVisible ? 'slide-in-left' : ''}`}>
             <h3>Let's Connect</h3>
             <p>
               I'm always open to discussing new projects, creative ideas, or
@@ -98,7 +101,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className={`contact-form ${contactVisible ? 'slide-in-right' : ''}`} onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input

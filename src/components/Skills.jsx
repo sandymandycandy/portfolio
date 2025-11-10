@@ -1,7 +1,10 @@
 import React from 'react';
 import './Skills.css';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Skills = () => {
+  const [skillsRef, skillsVisible] = useScrollAnimation({ threshold: 0.2, once: true });
+  const [billboardRef, billboardVisible] = useScrollAnimation({ threshold: 0.3, once: true });
   const technologies = [
     { name: 'React', icon: '⚛️', color: '#61DAFB' },
     { name: 'Node.js', icon: '🟢', color: '#68A063' },
@@ -22,14 +25,14 @@ const Skills = () => {
   ];
 
   return (
-    <section className="skills" id="skills">
+    <section className="skills" id="skills" ref={skillsRef}>
       <div className="container">
-        <h2 className="section-title">Professional Skills</h2>
-        <p className="section-subtitle">
+        <h2 className={`section-title ${skillsVisible ? 'animate-in' : ''}`}>Professional Skills</h2>
+        <p className={`section-subtitle ${skillsVisible ? 'animate-in' : ''}`}>
           Cutting-edge technologies I use to build exceptional digital experiences
         </p>
 
-        <div className="skills-billboard">
+        <div className={`skills-billboard ${billboardVisible ? 'animate-in' : ''}`} ref={billboardRef}>
           <div className="billboard-track">
             {/* First set of technologies */}
             {technologies.map((tech, index) => (
@@ -52,23 +55,23 @@ const Skills = () => {
           </div>
         </div>
 
-        <div className="expertise-grid">
-          <div className="expertise-card">
+        <div className={`expertise-grid ${skillsVisible ? 'animate-in' : ''}`}>
+          <div className={`expertise-card ${skillsVisible ? 'animate-card-1' : ''}`}>
             <div className="expertise-icon">🎯</div>
             <h3>MERN Stack</h3>
             <p>Full-stack development with MongoDB, Express, React, and Node.js</p>
           </div>
-          <div className="expertise-card">
+          <div className={`expertise-card ${skillsVisible ? 'animate-card-2' : ''}`}>
             <div className="expertise-icon">⚙️</div>
             <h3>XAMPP Expert</h3>
             <p>Proficient in Apache, MySQL, PHP, and Perl development environments</p>
           </div>
-          <div className="expertise-card">
+          <div className={`expertise-card ${skillsVisible ? 'animate-card-3' : ''}`}>
             <div className="expertise-icon">🚀</div>
             <h3>Modern Web Apps</h3>
             <p>Building responsive, performant, and scalable web applications</p>
           </div>
-          <div className="expertise-card">
+          <div className={`expertise-card ${skillsVisible ? 'animate-card-4' : ''}`}>
             <div className="expertise-icon">🔧</div>
             <h3>DevOps Ready</h3>
             <p>Version control, containerization, and deployment automation</p>

@@ -5,6 +5,24 @@
   overflow: hidden;
 }
 
+/* Scroll Animations */
+.section-title,
+.section-subtitle {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.section-title.animate-in,
+.section-subtitle.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-subtitle.animate-in {
+  transition-delay: 0.2s;
+}
+
 .section-subtitle {
   text-align: center;
   color: var(--text-secondary);
@@ -29,6 +47,14 @@
   );
   border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: perspective(1000px) rotateX(20deg) translateY(50px);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.skills-billboard.animate-in {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0deg) translateY(0);
 }
 
 .skills-billboard::before,
@@ -168,6 +194,38 @@
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.expertise-card.animate-card-1,
+.expertise-card.animate-card-2,
+.expertise-card.animate-card-3,
+.expertise-card.animate-card-4 {
+  animation: slideInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  opacity: 0;
+  transform: translateY(80px) rotateX(20deg);
+}
+
+.expertise-card.animate-card-1 {
+  animation-delay: 0.1s;
+}
+
+.expertise-card.animate-card-2 {
+  animation-delay: 0.2s;
+}
+
+.expertise-card.animate-card-3 {
+  animation-delay: 0.3s;
+}
+
+.expertise-card.animate-card-4 {
+  animation-delay: 0.4s;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
 }
 
 .expertise-card {

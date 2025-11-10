@@ -1,9 +1,13 @@
 import React from 'react';
 import './Hero.css';
+import { useParallax } from '../hooks/useScrollAnimation';
 
 const Hero = () => {
+  const parallaxOffset = useParallax(0.5);
+
   return (
     <section className="hero" id="home">
+      <div className="hero-background" style={{ transform: `translateY(${parallaxOffset}px)` }}></div>
       <div className="hero-content">
         <h1 className="hero-title">
           Hi, I'm <span className="highlight">Your Name</span>
