@@ -1,6 +1,21 @@
 .contact {
   padding: 5rem 2rem;
-  background: white;
+  background: var(--dark-bg);
+  position: relative;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--neon-cyan),
+    var(--neon-pink),
+    transparent);
 }
 
 .contact-content {
@@ -12,12 +27,15 @@
 
 .contact-info h3 {
   font-size: 2rem;
-  color: #333;
+  color: var(--neon-cyan);
   margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px var(--neon-cyan);
 }
 
 .contact-info > p {
-  color: #666;
+  color: var(--text-light);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
@@ -34,35 +52,41 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
+  background: var(--dark-secondary);
+  border: 1px solid var(--neon-cyan);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
 .info-item:hover {
   transform: translateX(10px);
+  box-shadow: 0 0 20px var(--neon-cyan);
+  border-color: var(--neon-pink);
 }
 
 .info-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 10px;
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--neon-cyan);
   flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 .info-item h4 {
   font-size: 1rem;
-  color: #333;
+  color: var(--neon-pink);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 0.25rem;
 }
 
 .info-item p {
-  color: #666;
+  color: var(--text-light);
   font-size: 0.95rem;
   margin: 0;
 }
@@ -75,27 +99,31 @@
 .social-link {
   width: 50px;
   height: 50px;
-  background: #f8f9fa;
-  border-radius: 50%;
+  background: var(--dark-bg);
+  border: 2px solid var(--neon-purple);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #667eea;
+  color: var(--neon-purple);
   transition: all 0.3s ease;
   text-decoration: none;
+  box-shadow: 0 0 10px rgba(179, 0, 255, 0.3);
 }
 
 .social-link:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--neon-purple);
+  color: var(--dark-bg);
   transform: translateY(-5px);
+  box-shadow: 0 0 20px var(--neon-purple);
 }
 
 .contact-form {
-  background: #f8f9fa;
+  background: var(--dark-secondary);
   padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--neon-pink);
+  box-shadow:
+    0 0 20px rgba(255, 0, 110, 0.3),
+    inset 0 0 20px rgba(255, 0, 110, 0.1);
 }
 
 .form-group {
@@ -105,28 +133,33 @@
 .form-group label {
   display: block;
   font-weight: 600;
-  color: #333;
+  color: var(--neon-cyan);
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.875rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border: 2px solid var(--neon-cyan);
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--dark-bg);
+  color: var(--text-light);
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--neon-pink);
+  box-shadow:
+    0 0 10px var(--neon-pink),
+    inset 0 0 10px rgba(255, 0, 110, 0.2);
 }
 
 .form-group textarea {
@@ -137,14 +170,16 @@
 .submit-btn {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
+  background: transparent;
+  color: var(--neon-green);
+  border: 2px solid var(--neon-green);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -152,8 +187,10 @@
 }
 
 .submit-btn:hover {
+  background: var(--neon-green);
+  color: var(--dark-bg);
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 0 30px var(--neon-green);
 }
 
 .submit-btn:active {
