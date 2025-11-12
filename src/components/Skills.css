@@ -89,21 +89,8 @@
 .billboard-track {
   display: flex;
   gap: 2rem;
-  animation: scroll 40s linear infinite;
   width: max-content;
-}
-
-.billboard-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .tech-card {

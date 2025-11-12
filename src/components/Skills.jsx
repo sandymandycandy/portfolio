@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Skills.css';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Skills = () => {
   const [skillsRef, skillsVisible] = useScrollAnimation({ threshold: 0.2, once: true });
   const [billboardRef, billboardVisible] = useScrollAnimation({ threshold: 0.3, once: true });
+  const trackRef = useRef(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (trackRef.current) {
+        const billboard = trackRef.current.parentElement;
+        const rect = billboard.getBoundingClientRect();
+
+        // Calculate mouse position relative to billboard (0 to 1)
+        const mouseX = e.clientX - rect.left;
+        const relativePosition = mouseX / rect.width;
+
+        // Calculate scroll range (half the track width for seamless loop)
+        const trackWidth = trackRef.current.scrollWidth / 2;
+        const maxScroll = trackWidth;
+
+        // Map mouse position to scroll position (reversed for natural feel)
+        const newScrollPosition = -(relativePosition * maxScroll);
+
+        setScrollPosition(newScrollPosition);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   const technologies = [
     { name: 'React', icon: '⚛️', color: '#61DAFB' },
     { name: 'Node.js', icon: '🟢', color: '#68A063' },
@@ -33,7 +64,11 @@ const Skills = () => {
         </p>
 
         <div className={`skills-billboard ${billboardVisible ? 'animate-in' : ''}`} ref={billboardRef}>
-          <div className="billboard-track">
+          <div
+            className="billboard-track"
+            ref={trackRef}
+            style={{ transform: `translateX(${scrollPosition}px)` }}
+          >
             {/* First set of technologies */}
             {technologies.map((tech, index) => (
               <div key={`tech-1-${index}`} className="tech-card">
