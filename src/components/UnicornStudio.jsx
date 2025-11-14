@@ -17,12 +17,9 @@ const UnicornStudio = () => {
       return;
     }
 
-    console.log('🌌 Initializing Three.js Space Scene...');
-
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    console.log('✅ Scene created');
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
@@ -33,7 +30,6 @@ const UnicornStudio = () => {
     );
     camera.position.z = 50;
     cameraRef.current = camera;
-    console.log('✅ Camera created at position:', camera.position);
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({
@@ -44,7 +40,6 @@ const UnicornStudio = () => {
     renderer.setPixelRatio(window.devicePixelRatio);
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
-    console.log('✅ Renderer created and canvas appended');
 
     // Lights - Space theme
     const ambientLight = new THREE.AmbientLight(0x1a1a2e, 0.3);
@@ -62,48 +57,35 @@ const UnicornStudio = () => {
     pointLight3.position.set(0, 30, -30);
     scene.add(pointLight3);
 
-    // Add a MASSIVE bright test sphere to verify rendering
-    const testGeometry = new THREE.SphereGeometry(20, 32, 32);
-    const testMaterial = new THREE.MeshBasicMaterial({
-      color: 0xff0000  // Bright red - impossible to miss!
-    });
-    const testSphere = new THREE.Mesh(testGeometry, testMaterial);
-    testSphere.position.set(0, 0, 0);  // Camera at z=50 looking at origin
-    scene.add(testSphere);
-    console.log('✅ MASSIVE RED sphere added at origin - you MUST see this!');
-    console.log('   Camera is at z=50, looking at origin where sphere is');
-    console.log('   Sphere radius is 20 units - should fill the screen!');
-
-    // Create stars (twinkling particles) - closer to camera
-    const starCount = 300;
+    // Create stars (twinkling particles)
+    const starCount = 500;
 
     for (let i = 0; i < starCount; i++) {
-      const size = Math.random() * 0.8 + 0.3;
+      const size = Math.random() * 0.6 + 0.2;
       const geometry = new THREE.SphereGeometry(size, 8, 8);
 
       const material = new THREE.MeshBasicMaterial({
         color: 0xffffff,
-        transparent: false
+        transparent: true,
+        opacity: Math.random() * 0.4 + 0.6
       });
 
       const star = new THREE.Mesh(geometry, material);
-      // Position stars in front of camera (negative z from camera position)
       star.position.set(
-        (Math.random() - 0.5) * 100,
-        (Math.random() - 0.5) * 100,
-        (Math.random() - 0.5) * 60 - 30  // Range from -60 to 0 (in front of camera at z=50)
+        (Math.random() - 0.5) * 150,
+        (Math.random() - 0.5) * 150,
+        (Math.random() - 0.5) * 100 - 20
       );
 
       star.userData = {
-        twinkleSpeed: Math.random() * 0.02 + 0.01,
+        twinkleSpeed: Math.random() * 0.015 + 0.005,
         twinkleOffset: Math.random() * Math.PI * 2,
-        baseOpacity: 1.0
+        baseOpacity: Math.random() * 0.4 + 0.6
       };
 
       scene.add(star);
       particlesRef.current.push(star);
     }
-    console.log(`✅ Created ${starCount} stars`);
 
     // Create planets and celestial objects - positioned in view
     const planets = [
@@ -160,23 +142,17 @@ const UnicornStudio = () => {
 
     // Animation loop
     let animationId;
-    let frameCount = 0;
     const animate = () => {
       animationId = requestAnimationFrame(animate);
-
-      if (frameCount === 0) {
-        console.log('✅ Animation loop started');
-      }
-      frameCount++;
 
       // Animate time
       const time = Date.now() * 0.001;
 
-      // Stars are static and bright for now
-      // particlesRef.current.forEach((star) => {
-      //   const twinkle = Math.sin(time * star.userData.twinkleSpeed + star.userData.twinkleOffset);
-      //   star.material.opacity = star.userData.baseOpacity + twinkle * 0.3;
-      // });
+      // Animate stars (twinkle effect)
+      particlesRef.current.forEach((star) => {
+        const twinkle = Math.sin(time * star.userData.twinkleSpeed + star.userData.twinkleOffset);
+        star.material.opacity = star.userData.baseOpacity + twinkle * 0.2;
+      });
 
       // Animate planets and celestial objects
       geometriesRef.current.forEach((mesh, index) => {
@@ -202,9 +178,6 @@ const UnicornStudio = () => {
     };
 
     animate();
-    console.log('🚀 Space scene fully initialized!');
-    console.log('Canvas element:', renderer.domElement);
-    console.log('Container children:', containerRef.current.children.length);
 
     // Cleanup
     return () => {
