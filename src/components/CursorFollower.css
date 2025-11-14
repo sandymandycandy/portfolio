@@ -15,7 +15,7 @@
   width: 120px;
   height: 160px;
   transform: translate(-50%, -50%);
-  filter: drop-shadow(0 10px 40px rgba(99, 102, 241, 0.6));
+  filter: drop-shadow(0 10px 40px rgba(74, 95, 255, 0.7));
   animation: float-robot 3s ease-in-out infinite;
 }
 
@@ -33,13 +33,13 @@
   position: relative;
   width: 60px;
   height: 50px;
-  background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  background: linear-gradient(135deg, #4a5fff 0%, #7b8cff 100%);
   border-radius: 15px;
   margin: 0 auto;
   box-shadow:
-    0 0 30px rgba(99, 102, 241, 0.5),
+    0 0 30px rgba(74, 95, 255, 0.6),
     inset 0 2px 10px rgba(255, 255, 255, 0.2);
-  border: 2px solid #ec4899;
+  border: 2px solid #9d4edd;
 }
 
 .robot-antenna {
@@ -59,9 +59,9 @@
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
-  background: #ec4899;
+  background: #00d4ff;
   border-radius: 50%;
-  box-shadow: 0 0 20px #ec4899, 0 0 40px #ec4899;
+  box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff;
   animation: pulse-antenna 2s ease-in-out infinite;
 }
 
@@ -143,13 +143,13 @@
   position: relative;
   width: 70px;
   height: 60px;
-  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+  background: linear-gradient(135deg, #7b8cff 0%, #4a5fff 100%);
   border-radius: 10px;
   margin: 5px auto 0;
   box-shadow:
-    0 0 30px rgba(99, 102, 241, 0.5),
+    0 0 30px rgba(74, 95, 255, 0.6),
     inset 0 2px 10px rgba(255, 255, 255, 0.2);
-  border: 2px solid #ec4899;
+  border: 2px solid #9d4edd;
 }
 
 .robot-panel {
@@ -171,9 +171,9 @@
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
-  background: #14b8a6;
+  background: #00d4ff;
   border-radius: 50%;
-  box-shadow: 0 0 20px #14b8a6, 0 0 40px #14b8a6;
+  box-shadow: 0 0 20px #00d4ff, 0 0 40px #00d4ff;
   animation: pulse-light 1.5s ease-in-out infinite;
 }
 
@@ -202,11 +202,11 @@
 .arm {
   width: 8px;
   height: 35px;
-  background: linear-gradient(to bottom, #6366f1, #818cf8);
+  background: linear-gradient(to bottom, #4a5fff, #7b8cff);
   border-radius: 4px;
   position: relative;
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
-  border: 1px solid #ec4899;
+  box-shadow: 0 0 15px rgba(74, 95, 255, 0.6);
+  border: 1px solid #9d4edd;
 }
 
 .left-arm {
@@ -264,11 +264,11 @@
 .leg {
   width: 12px;
   height: 30px;
-  background: linear-gradient(to bottom, #818cf8, #6366f1);
+  background: linear-gradient(to bottom, #7b8cff, #4a5fff);
   border-radius: 6px;
   position: relative;
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
-  border: 1px solid #ec4899;
+  box-shadow: 0 0 15px rgba(74, 95, 255, 0.6);
+  border: 1px solid #9d4edd;
 }
 
 .leg::after {

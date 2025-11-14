@@ -5,21 +5,25 @@
 }
 
 :root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --primary-light: #818cf8;
-  --accent: #ec4899;
-  --accent-secondary: #14b8a6;
-  --accent-gold: #fbbf24;
-  --dark-bg: #0f172a;
-  --dark-secondary: #1e293b;
-  --dark-tertiary: #334155;
-  --dark-card: #1e293b;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-light: #e2e8f0;
-  --glass-bg: rgba(30, 41, 59, 0.7);
-  --glass-border: rgba(148, 163, 184, 0.1);
+  /* Space Theme - Cosmic Colors */
+  --primary: #4a5fff;
+  --primary-dark: #3742fa;
+  --primary-light: #7b8cff;
+  --accent: #9d4edd;
+  --accent-secondary: #00d4ff;
+  --accent-gold: #ffd60a;
+  --dark-bg: #0a0a14;
+  --dark-secondary: #1a1a2e;
+  --dark-tertiary: #2a2a45;
+  --dark-card: #16162a;
+  --text-primary: #f0f0ff;
+  --text-secondary: #c8c8e0;
+  --text-light: #e8e8f8;
+  --glass-bg: rgba(26, 26, 46, 0.8);
+  --glass-border: rgba(138, 138, 200, 0.15);
+  --nebula-purple: #7b2cbf;
+  --nebula-blue: #240046;
+  --cosmic-cyan: #00f5ff;
 }
 
 body {
@@ -31,10 +35,10 @@ body {
   overflow-x: hidden;
   background: var(--dark-bg);
   background-image:
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.1) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(74, 95, 255, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(157, 78, 221, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(0, 212, 255, 0.12) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(123, 44, 191, 0.15) 0px, transparent 50%);
   background-attachment: fixed;
   perspective: 1000px;
   -webkit-font-smoothing: antialiased;
@@ -50,12 +54,12 @@ body::before {
   width: 100%;
   height: 100%;
   background:
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px;
+    linear-gradient(90deg, rgba(74, 95, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(157, 78, 221, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
 html {
@@ -303,27 +307,27 @@ button {
 }
 
 .orb-1 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(74, 95, 255, 0.35) 0%, transparent 70%);
   top: 10%;
   left: 20%;
   animation-delay: 0s;
 }
 
 .orb-2 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.4) 0%, transparent 70%);
   top: 60%;
   right: 10%;
   animation-delay: 5s;
 }
 
 .orb-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.3) 0%, transparent 70%);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
   bottom: 20%;
   left: 10%;
   animation-delay: 10s;
