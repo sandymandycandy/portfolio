@@ -62,32 +62,42 @@ const UnicornStudio = () => {
     pointLight3.position.set(0, 30, -30);
     scene.add(pointLight3);
 
-    // Create stars (twinkling particles)
-    const starGeometry = new THREE.SphereGeometry(0.15, 8, 8);
-    const starCount = 500;
+    // Add a bright test sphere to verify rendering
+    const testGeometry = new THREE.SphereGeometry(5, 32, 32);
+    const testMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff00ff,
+      emissive: 0xff00ff,
+      emissiveIntensity: 1
+    });
+    const testSphere = new THREE.Mesh(testGeometry, testMaterial);
+    testSphere.position.set(0, 0, 0);
+    scene.add(testSphere);
+    console.log('✅ Test sphere added at origin');
+
+    // Create stars (twinkling particles) - closer to camera
+    const starCount = 300;
 
     for (let i = 0; i < starCount; i++) {
-      const size = Math.random() * 0.5 + 0.2;
+      const size = Math.random() * 0.8 + 0.3;
       const geometry = new THREE.SphereGeometry(size, 8, 8);
 
-      const color = [0xffffff, 0xe0f2ff, 0xfff0e6, 0xffe4ff][Math.floor(Math.random() * 4)];
       const material = new THREE.MeshBasicMaterial({
-        color: color,
-        transparent: true,
-        opacity: Math.random() * 0.4 + 0.7
+        color: 0xffffff,
+        transparent: false
       });
 
       const star = new THREE.Mesh(geometry, material);
+      // Position stars in front of camera (negative z from camera position)
       star.position.set(
-        (Math.random() - 0.5) * 200,
-        (Math.random() - 0.5) * 200,
-        (Math.random() - 0.5) * 200
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 60 - 30  // Range from -60 to 0 (in front of camera at z=50)
       );
 
       star.userData = {
         twinkleSpeed: Math.random() * 0.02 + 0.01,
         twinkleOffset: Math.random() * Math.PI * 2,
-        baseOpacity: Math.random() * 0.5 + 0.5
+        baseOpacity: 1.0
       };
 
       scene.add(star);
@@ -95,24 +105,19 @@ const UnicornStudio = () => {
     }
     console.log(`✅ Created ${starCount} stars`);
 
-    // Create planets and celestial objects
+    // Create planets and celestial objects - positioned in view
     const planets = [
-      { geometry: new THREE.SphereGeometry(4, 32, 32), color: 0x4a5fff, position: [20, 15, -20] },
-      { geometry: new THREE.SphereGeometry(3, 32, 32), color: 0x9d4edd, position: [-25, -10, -15] },
-      { geometry: new THREE.SphereGeometry(2.5, 32, 32), color: 0x00d4ff, position: [15, -20, -25] },
-      { geometry: new THREE.TorusGeometry(5, 0.8, 16, 100), color: 0x7b2cbf, position: [-15, 20, -30] },
-      { geometry: new THREE.IcosahedronGeometry(3), color: 0x5a189a, position: [25, -15, -20] }
+      { geometry: new THREE.SphereGeometry(6, 32, 32), color: 0x4a5fff, position: [15, 10, -15] },
+      { geometry: new THREE.SphereGeometry(5, 32, 32), color: 0x9d4edd, position: [-20, -8, -20] },
+      { geometry: new THREE.SphereGeometry(4, 32, 32), color: 0x00d4ff, position: [10, -15, -25] },
+      { geometry: new THREE.TorusGeometry(6, 1, 16, 100), color: 0x7b2cbf, position: [-12, 15, -18] },
+      { geometry: new THREE.IcosahedronGeometry(5), color: 0x5a189a, position: [18, -10, -22] }
     ];
 
     planets.forEach((planet, index) => {
-      const material = new THREE.MeshPhysicalMaterial({
+      const material = new THREE.MeshBasicMaterial({
         color: planet.color,
-        emissive: planet.color,
-        emissiveIntensity: 0.5,
-        metalness: 0.3,
-        roughness: 0.7,
-        transparent: true,
-        opacity: 0.8,
+        transparent: false,
         wireframe: index === 3 || index === 4
       });
 
@@ -164,12 +169,14 @@ const UnicornStudio = () => {
       }
       frameCount++;
 
-      // Animate stars (twinkle effect)
+      // Animate time
       const time = Date.now() * 0.001;
-      particlesRef.current.forEach((star) => {
-        const twinkle = Math.sin(time * star.userData.twinkleSpeed + star.userData.twinkleOffset);
-        star.material.opacity = star.userData.baseOpacity + twinkle * 0.3;
-      });
+
+      // Stars are static and bright for now
+      // particlesRef.current.forEach((star) => {
+      //   const twinkle = Math.sin(time * star.userData.twinkleSpeed + star.userData.twinkleOffset);
+      //   star.material.opacity = star.userData.baseOpacity + twinkle * 0.3;
+      // });
 
       // Animate planets and celestial objects
       geometriesRef.current.forEach((mesh, index) => {
