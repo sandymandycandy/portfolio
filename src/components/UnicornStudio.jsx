@@ -62,17 +62,17 @@ const UnicornStudio = () => {
     pointLight3.position.set(0, 30, -30);
     scene.add(pointLight3);
 
-    // Add a bright test sphere to verify rendering
-    const testGeometry = new THREE.SphereGeometry(5, 32, 32);
+    // Add a MASSIVE bright test sphere to verify rendering
+    const testGeometry = new THREE.SphereGeometry(20, 32, 32);
     const testMaterial = new THREE.MeshBasicMaterial({
-      color: 0xff00ff,
-      emissive: 0xff00ff,
-      emissiveIntensity: 1
+      color: 0xff0000  // Bright red - impossible to miss!
     });
     const testSphere = new THREE.Mesh(testGeometry, testMaterial);
-    testSphere.position.set(0, 0, 0);
+    testSphere.position.set(0, 0, 0);  // Camera at z=50 looking at origin
     scene.add(testSphere);
-    console.log('✅ Test sphere added at origin');
+    console.log('✅ MASSIVE RED sphere added at origin - you MUST see this!');
+    console.log('   Camera is at z=50, looking at origin where sphere is');
+    console.log('   Sphere radius is 20 units - should fill the screen!');
 
     // Create stars (twinkling particles) - closer to camera
     const starCount = 300;
