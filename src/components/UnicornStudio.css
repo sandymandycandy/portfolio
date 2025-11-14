@@ -1,0 +1,36 @@
+.unicorn-studio-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.unicorn-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+/* Allow interaction when hovering over the animation area */
+.unicorn-studio-container:hover {
+  pointer-events: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .unicorn-studio-container {
+    opacity: 0.6;
+  }
+
+  .unicorn-iframe {
+    opacity: 0.6;
+  }
+}
