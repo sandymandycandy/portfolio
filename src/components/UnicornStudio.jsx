@@ -12,11 +12,17 @@ const UnicornStudio = () => {
   const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {
+      console.error('UnicornStudio: Container ref is null');
+      return;
+    }
+
+    console.log('🌌 Initializing Three.js Space Scene...');
 
     // Scene setup
     const scene = new THREE.Scene();
     sceneRef.current = scene;
+    console.log('✅ Scene created');
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
@@ -27,6 +33,7 @@ const UnicornStudio = () => {
     );
     camera.position.z = 50;
     cameraRef.current = camera;
+    console.log('✅ Camera created at position:', camera.position);
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({
@@ -37,6 +44,7 @@ const UnicornStudio = () => {
     renderer.setPixelRatio(window.devicePixelRatio);
     containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
+    console.log('✅ Renderer created and canvas appended');
 
     // Lights - Space theme
     const ambientLight = new THREE.AmbientLight(0x1a1a2e, 0.3);
@@ -59,14 +67,14 @@ const UnicornStudio = () => {
     const starCount = 500;
 
     for (let i = 0; i < starCount; i++) {
-      const size = Math.random() * 0.3 + 0.1;
+      const size = Math.random() * 0.5 + 0.2;
       const geometry = new THREE.SphereGeometry(size, 8, 8);
 
       const color = [0xffffff, 0xe0f2ff, 0xfff0e6, 0xffe4ff][Math.floor(Math.random() * 4)];
       const material = new THREE.MeshBasicMaterial({
         color: color,
         transparent: true,
-        opacity: Math.random() * 0.5 + 0.5
+        opacity: Math.random() * 0.4 + 0.7
       });
 
       const star = new THREE.Mesh(geometry, material);
@@ -85,6 +93,7 @@ const UnicornStudio = () => {
       scene.add(star);
       particlesRef.current.push(star);
     }
+    console.log(`✅ Created ${starCount} stars`);
 
     // Create planets and celestial objects
     const planets = [
@@ -125,6 +134,7 @@ const UnicornStudio = () => {
       scene.add(mesh);
       geometriesRef.current.push(mesh);
     });
+    console.log(`✅ Created ${planets.length} celestial objects`);
 
     // Mouse movement tracking
     const handleMouseMove = (event) => {
@@ -145,8 +155,14 @@ const UnicornStudio = () => {
 
     // Animation loop
     let animationId;
+    let frameCount = 0;
     const animate = () => {
       animationId = requestAnimationFrame(animate);
+
+      if (frameCount === 0) {
+        console.log('✅ Animation loop started');
+      }
+      frameCount++;
 
       // Animate stars (twinkle effect)
       const time = Date.now() * 0.001;
@@ -179,6 +195,9 @@ const UnicornStudio = () => {
     };
 
     animate();
+    console.log('🚀 Space scene fully initialized!');
+    console.log('Canvas element:', renderer.domElement);
+    console.log('Container children:', containerRef.current.children.length);
 
     // Cleanup
     return () => {
