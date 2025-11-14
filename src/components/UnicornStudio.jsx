@@ -5,37 +5,43 @@ const UnicornStudio = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Try loading Unicorn Studio with script tag approach
+    // Load Framer Unicorn Studio Embed component
     const script = document.createElement('script');
-    script.src = 'https://unicorn.studio/unicornStudio.umd.js';
+    script.type = 'module';
+    script.src = 'https://framer.com/m/UnicornStudioEmbed-wWy9.js';
     script.async = true;
 
     script.onload = () => {
-      if (window.UnicornStudio && containerRef.current) {
-        window.UnicornStudio.init({
-          el: containerRef.current,
-          scene: '752CljhqTsG0pF2hdEYL'
-        });
-      }
+      console.log('Unicorn Studio Framer component loaded');
     };
 
-    document.body.appendChild(script);
+    script.onerror = () => {
+      console.error('Failed to load Unicorn Studio component');
+    };
+
+    document.head.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
     };
   }, []);
 
   return (
     <div className="unicorn-studio-container">
-      <iframe
-        src="https://unicorn.studio/remix/752CljhqTsG0pF2hdEYL"
-        title="Unicorn Studio Animation"
-        className="unicorn-iframe"
-        allowFullScreen
-        loading="lazy"
-      />
-      <div ref={containerRef} className="unicorn-canvas"></div>
+      <div ref={containerRef} className="unicorn-wrapper">
+        <unicornstudioembed-wwy9
+          scene-id="752CljhqTsG0pF2hdEYL"
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+        />
+      </div>
     </div>
   );
 };
